@@ -1,4 +1,1 @@
-"# SwiftThread-Website" 
-"# Website" 
-"# Website" 
-"# Website" 
+SwiftThreads Website that is a school activity that merely showcases a fully functional cart, and it lacks a backend or database that stores user information that is vital in logging in and registering.

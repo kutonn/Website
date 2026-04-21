@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <title>SwiftThreads - Cart</title>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/templatemo-hexashop.css">
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cart-container {
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        .cart-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Responsive Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        table th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+
+        .cart-image {
+            width: 60px;
+            height: auto;
+        }
+
+        /* Buttons */
+        .cart-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .update-cart-btn, .checkout-btn {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .update-cart-btn:hover, .checkout-btn:hover {
+            background-color: #e65c4e;
+        }
+
+        .total-section {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+            .cart-container {
+                padding: 10px;
+                margin-top: 60px;
+            }
+
+            .cart-title {
+                font-size: 20px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            table th, table td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .cart-image {
+                width: 40px;
+            }
+
+            .cart-buttons {
+                flex-direction: column;
+            }
+
+            .update-cart-btn, .checkout-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            .total-section {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cart-container {
+                margin-top: 50px;
+            }
+
+            .cart-title {
+                font-size: 18px;
+            }
+
+            table th, table td {
+                padding: 6px;
+                font-size: 12px;
+            }
+
+            .cart-image {
+                width: 30px;
+            }
+
+            .update-cart-btn, .checkout-btn {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .total-section {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="img/logo.png">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="index.html">Home</a></li>
+                        <li class="scroll-to-section"><a href="index.html#men">Fabrics</a></li>
+                        <li class="submenu">
+                            <a href="javascript:;">Pages</a>
+                            <ul>
+                                <li><a href="about.html" id="about-link">About Us</a></li>
+                                <li><a href="products.html" id="products-link">Products</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="index.html#explore">Explore</a></li>
+                        <li><a href="cart.html" class="active">Cart</a></li>
+                        <li>
+                            <form action="#" method="get" class="search-form">
+                                <input type="text" name="search" placeholder="Search..." required>
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </li>
+                        <li><a href="login.html">Log in/Sign up</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ***** Cart Area Starts Below Navigation ***** -->
+<section class="cart-container">
+    <div class="container">
+        <div class="cart-title">Your Selected Items</div>
+        <table>
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <div class="total-section">
+            Total: ₱<span id="cart-total">0.00</span>
+        </div>
+
+        <div class="cart-buttons">
+            <button class="update-cart-btn" onclick="updateCart()">Update Cart</button>
+            <button class="checkout-btn" onclick="window.location.href='payment gateway.html'">Proceed to Checkout</button>
+        </div>
+    </div>
+</section>
+<!-- ***** Cart Area Ends ***** -->
+
+<!-- JavaScript -->
+<script src="js/jquery-2.1.0.min.js"></script>
+<script>
+    function loadCart() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        let total = 0;
+
+        cartItemsContainer.innerHTML = ''; // Clear existing items
+
+        cart.forEach((item, index) => {
+            const subtotal = (item.price * item.quantity).toFixed(2);
+            total += parseFloat(subtotal);
+
+            cartItemsContainer.innerHTML += `
+                <tr>
+                    <td>${item.name}</td>
+                    <td><img src="${item.image}" alt="${item.name}" class="cart-image"></td>
+                    <td>₱${item.price.toFixed(2)}</td>
+                    <td><input type="number" value="${item.quantity}" min="1" step="1" data-index="${index}" onchange="updateQuantity(event)"></td>
+                    <td>₱${subtotal}</td>
+                    <td><button onclick="removeItem(${index})" class="update-cart-btn" style="background-color: #ff3d3d;">Remove</button></td>
+                </tr>
+            `;
+        });
+
+        cartTotalElement.innerText = total.toFixed(2);
+    }
+
+    function updateQuantity(event) {
+        const index = event.target.getAttribute('data-index');
+        const newQuantity = parseInt(event.target.value);
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart[index]) {
+            cart[index].quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+    }
+
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+    }
+
+    function updateCart() {
+        alert('Cart updated successfully!');
+        loadCart();
+    }
+
+    function checkout() {
+        alert('Proceeding to checkout...');
+        // Add your checkout logic here
+    }
+
+    // Load cart on page load
+    document.addEventListener('DOMContentLoaded', loadCart);
+</script>
+</body>
+
+</html>

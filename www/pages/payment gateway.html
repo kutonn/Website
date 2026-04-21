@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SwiftThreads - Payment Gateway</title>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/templatemo-hexashop.css">
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            flex-shrink: 0;
+        }
+
+        footer {
+            flex-shrink: 0;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .container.payment-page {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .payment-page h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .payment-page label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .payment-page input,
+        .payment-page select,
+        .payment-page textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .payment-page .total-summary {
+            margin: 20px 0;
+            text-align: right;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .pay-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .pay-button:hover {
+            background-color: #0056b3;
+        }
+
+        .payment-page form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .payment-method-options {
+            margin-bottom: 20px;
+        }
+
+        .payment-method-details {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="img/logo.png">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="index.html">Home</a></li>
+                        <li class="scroll-to-section"><a href="index.html#men">Fabrics</a></li>
+                        <li class="submenu">
+                            <a href="javascript:;">Pages</a>
+                            <ul>
+                                <li><a href="about.html" id="about-link">About Us</a></li>
+                                <li><a href="products.html" id="products-link">Products</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="index.html#explore">Explore</a></li>
+                        <li><a href="cart.html" class="active">Cart</a></li>
+                        <li>
+                            <form action="#" method="get" class="search-form">
+                                <input type="text" name="search" placeholder="Search..." required>
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </li>
+                        <li><a href="login.html">Log in/Sign up</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container payment-page">
+            <h1 class="text-center">HEXASHOP - Payment Gateway</h1>
+            <h2>Choose Payment Method</h2>
+            <form action="/process-payment" method="post">
+                <!-- Payment Method Selection -->
+                <div class="payment-method-options">
+                    <label for="payment-method">Select Payment Method:</label>
+                    <select id="payment-method" name="payment_method" required>
+                        <option value="card">Credit/Debit Card</option>
+                        <option value="ewallet">E-wallet</option>
+                        <option value="cod">Cash on Delivery</option>
+                    </select>
+                </div>
+
+                <!-- Credit Card Information (Only shows if "Card" is selected) -->
+                <div id="card-info" class="payment-method-details">
+                    <label for="card-name">Cardholder Name:</label>
+                    <input type="text" id="card-name" name="card_name" placeholder="Enter your name" required>
+
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="card-number" name="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" maxlength="16" required>
+
+                    <label for="expiry-date">Expiry Date:</label>
+                    <input type="month" id="expiry-date" name="expiry_date" required>
+
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3" required>
+                </div>
+
+                <!-- E-Wallet Information (Only shows if "E-wallet" is selected) -->
+                <div id="ewallet-info" class="payment-method-details">
+                    <label for="ewallet">Select E-wallet:</label>
+                    <select id="ewallet" name="ewallet" required>
+                        <option value="paypal">PayPal</option>
+                        <option value="gpay">GCash</option>
+                        <option value="applepay">Maya</option>
+                    </select>
+
+                    <label for="account-number">E-wallet Account Number:</label>
+                    <input type="text" id="account-number" name="account_number" placeholder="Enter your account number" required>
+                </div>
+
+                <!-- Cash on Delivery Option (Only shows if "Cash on Delivery" is selected) -->
+                <div id="cod-info" class="payment-method-details">
+                    <p>You have chosen Cash on Delivery. Please have the exact amount ready when the product is delivered.</p>
+                    <!-- No address fields now for COD -->
+                </div>
+
+                <a class="btn btn-primary" href="after payment.html">Proceed</a>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        window.onload = function () {
+        let orderTotal = localStorage.getItem('orderTotal') || '0.00';
+        document.getElementById('order-total').innerText = '₱' + orderTotal;
+    };
+    </script>
+
+</body>
+
+</html>
